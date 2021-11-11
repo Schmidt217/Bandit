@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from "react";
+import React, { useEffect } from "react";
 
 import Header from "../layout/Header";
 import About from "../layout/About";
@@ -34,7 +34,7 @@ const Home = () => {
 	});
 
 	return (
-		<Fragment>
+		<>
 			<Header />
 			<About />
 			<Services />
@@ -42,7 +42,7 @@ const Home = () => {
 			<CoreValues />
 			<Contact />
 			<Footer />
-		</Fragment>
+		</>
 	);
 };
 

@@ -406,7 +406,7 @@ h1 {
 }
 
 /* ------------------------ CORE VALUES ---------------------------------- */
-.core_values {
+.core-values {
 	color: var(--primary-color);
 }
 .core-values-container {
@@ -421,7 +421,7 @@ h1 {
 	margin: 0 auto;
 }
 
-.core_values img {
+.core-values img {
 	height: 150px;
 	width: 150px;
 	padding: 30px;

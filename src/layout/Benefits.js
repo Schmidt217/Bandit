@@ -1,25 +1,33 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 
 const Benefits = () => {
 	const benefitsContainerRef = useRef();
+	const partnerRef = useRef();
+	const partnerContentRef = useRef();
+	const techRef = useRef();
+	const techContentRef = useRef();
+	const customerRef = useRef();
+	const customerContentRef = useRef();
+	const [
+		isContainerActive,
+		setPartnerContainer,
+		setTechContainer,
+		setCustomerContainer,
+	] = useState(false);
 
 	const toggleTab = (e) => {
-		const clicked = e.target.closest(".benefits-tab");
-
-		//guard clause
-		if (!clicked) return;
 		//active tab
 		benefitsContainerRef.current
 			.querySelectorAll(".benefits-tab")
 			.forEach((t) => t.classList.remove("benefits-tab-active"));
-		clicked.classList.add("benefits-tab-active");
+		e.target.classList.add("benefits-tab-active");
 
 		//Activate content area
 		benefitsContainerRef.current
 			.querySelectorAll(".benefits-content")
 			.forEach((c) => c.classList.remove("benefits-content-active"));
 		benefitsContainerRef.current
-			.querySelector(`.benefits-content-${clicked.dataset.tab}`)
+			.querySelector(`.benefits-content-${e.target.dataset.tab}`)
 			.classList.add("benefits-content-active");
 	};
 
@@ -33,6 +41,7 @@ const Benefits = () => {
 				<h2>Benefits</h2>
 				<div className="benefits-tab-container">
 					<button
+						ref={partnerRef}
 						className="benefits-tab benefits-tab-1 benefits-tab-active"
 						data-tab="1"
 						onClick={toggleTab}
@@ -40,6 +49,7 @@ const Benefits = () => {
 						Partner/ Integrator
 					</button>
 					<button
+						ref={techRef}
 						className="benefits-tab benefits-tab-2"
 						data-tab="2"
 						onClick={toggleTab}
@@ -47,6 +57,7 @@ const Benefits = () => {
 						Technicians
 					</button>
 					<button
+						ref={customerRef}
 						className="benefits-tab benefits-tab-3"
 						data-tab="3"
 						onClick={toggleTab}
@@ -55,7 +66,10 @@ const Benefits = () => {
 					</button>
 				</div>
 
-				<div className="benefits-content benefits-content-1 benefits-content-active">
+				<div
+					ref={partnerContentRef}
+					className="benefits-content benefits-content-1 benefits-content-active"
+				>
 					<img
 						className="partner-image benefit-image"
 						src="images/partner-image.webp"
@@ -74,7 +88,10 @@ const Benefits = () => {
 					</ul>
 				</div>
 
-				<div className="benefits-content benefits-content-2">
+				<div
+					ref={techContentRef}
+					className="benefits-content benefits-content-2"
+				>
 					<ul className="technician-benefits benefit-list">
 						<li>Flexibility in hours</li>
 						<li>Additional income</li>
@@ -89,7 +106,10 @@ const Benefits = () => {
 						alt="technician"
 					/>
 				</div>
-				<div className="benefits-content benefits-content-3">
+				<div
+					ref={customerContentRef}
+					className="benefits-content benefits-content-3"
+				>
 					<img
 						className="customer-image benefit-image"
 						src="images/city.webp"

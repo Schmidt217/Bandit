@@ -2,7 +2,7 @@ import React from "react";
 
 const CoreValues = () => {
 	return (
-		<div id="core_values" className="section-holder core_values even-section">
+		<div id="core-values" className="section-holder core-values even-section">
 			<section className="section">
 				<h2>Core Values</h2>
 				<div className="core-values-container">

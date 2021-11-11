@@ -1,4 +1,4 @@
-import React, { Fragment, useRef } from "react";
+import React, { useRef } from "react";
 import PropTypes from "prop-types";
 import { Link, useLocation } from "react-router-dom";
 import Logo from "../images/logo.png";
@@ -12,17 +12,14 @@ const Navbar = ({ icon }) => {
 	};
 
 	const goToSection = (e) => {
-		if (e.target.classList.contains("nav-link")) {
-			e.preventDefault();
-			const id = e.target.getAttribute("href");
-
-			document.querySelector(id).scrollIntoView({ behavior: "smooth" });
-			toggleNav();
-		}
+		e.preventDefault();
+		const id = e.target.getAttribute("href");
+		document.querySelector(id).scrollIntoView({ behavior: "smooth" });
+		toggleNav();
 	};
 
 	const loginLinks = (
-		<Fragment>
+		<>
 			<ul className="page-nav">
 				<li className="nav-item" onClick={toggleNav}>
 					<Link to="/">Home</Link>
@@ -31,54 +28,38 @@ const Navbar = ({ icon }) => {
 					<Link to="/login">Login</Link>
 				</li>
 			</ul>
-		</Fragment>
+		</>
 	);
 
+	const homeLinkData = [
+		{ label: "Home", href: "#home" },
+		{ label: "About Us", href: "#about" },
+		{ label: "Services", href: "#services" },
+		{ label: "How It Works", href: "#how-it-works" },
+		{ label: "Benefits", href: "#benefits" },
+		{ label: "Core Values", href: "#core-values" },
+		{ label: "Contact Us", href: "#contact" },
+	];
+
 	const homeLinks = (
-		<Fragment>
+		<>
 			<ul className="nav-items">
-				<li className="nav-item" onClick={goToSection}>
-					<a className="nav-link" href="#home">
-						Home
-					</a>
-				</li>
-				<li className="nav-item" onClick={goToSection}>
-					<a className="nav-link" href="#about">
-						About Us
-					</a>
-				</li>
-				<li className="nav-item" onClick={goToSection}>
-					<a className="nav-link" href="#services">
-						Services
-					</a>
-				</li>
-				<li className="nav-item" onClick={goToSection}>
-					<a className="nav-link" href="#how-it-works">
-						How It Works
-					</a>
-				</li>
-				<li className="nav-item" onClick={goToSection}>
-					<a className="nav-link" href="#benefits">
-						Benefits
-					</a>
-				</li>
-				<li className="nav-item" onClick={goToSection}>
-					<a className="nav-link" href="#core_values">
-						Core Values
-					</a>
-				</li>
-				<li className="nav-item" onClick={goToSection}>
-					<a className="nav-link" href="#contact">
-						Contact Us
-					</a>
-				</li>
+				{homeLinkData.map((link) => {
+					return (
+						<li key={link.href} className="nav-item" onClick={goToSection}>
+							<a className="nav-link" href={link.href}>
+								{link.label}
+							</a>
+						</li>
+					);
+				})}
 			</ul>
 			<ul className="page-nav">
 				<li className="nav-item" onClick={toggleNav}>
 					<Link to="/login">Login</Link>
 				</li>
 			</ul>
-		</Fragment>
+		</>
 	);
 
 	const changeNav = () => {
@@ -93,7 +74,7 @@ const Navbar = ({ icon }) => {
 	let navMenu = changeNav();
 
 	return (
-		<Fragment>
+		<>
 			<nav ref={navRef}>
 				<button
 					className="closeBtn"
@@ -108,7 +89,7 @@ const Navbar = ({ icon }) => {
 				{icon}
 				{navMenu}
 			</nav>
-		</Fragment>
+		</>
 	);
 };
 
