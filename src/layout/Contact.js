@@ -42,7 +42,7 @@ const Contact = () => {
 			message: _message,
 		};
 
-		fetch("../netlify/functions/send-email/index.js", {
+		fetch("../.netlify/functions/send-email/", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/JSON",
