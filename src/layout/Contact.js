@@ -56,7 +56,7 @@ const Contact = () => {
 			})
 			.then(() => {
 				submitRef.current.innerHTML = "Submit";
-				formRef.reset();
+				formRef.current.reset();
 			})
 			.catch((err) => {
 				console.log(err);
