@@ -34,7 +34,7 @@ const Register = () => {
 						<label htmlFor="password">Confirm Password</label>
 						<input type="password" name="password" required />
 					</div>
-					<input type="submit" value="Login" className="btn" />
+					<input type="submit" value="Register" className="btn" />
 				</form>
 			</div>
 		</>
