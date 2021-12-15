@@ -615,6 +615,10 @@ button {
 	font-size: 2rem;
 }
 
+a {
+	color: (var(--secondary-color-lighter));
+}
+
 /* ------------------------ REVEAL SECTIONS ON SCROLL ---------------------------------- */
 
 .section {
