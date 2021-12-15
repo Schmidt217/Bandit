@@ -11,7 +11,9 @@ const Login = () => {
 					height: "100px",
 				}}
 			>
-				<img id="header-logo" src={Bandit} alt="" />
+				<Link to="/">
+					<img id="header-logo" src={Bandit} alt="" />
+				</Link>
 			</header>
 			<div className="login-form-container">
 				<h3 className="login-head">Log In</h3>
