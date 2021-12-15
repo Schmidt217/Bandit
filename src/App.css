@@ -597,7 +597,8 @@ input {
 	font-size: 2rem;
 }
 
-.login-form input[type="email"],
+.login-form input[type="name"],
+input[type="email"],
 input[type="password"] {
 	display: block;
 	width: 100%;

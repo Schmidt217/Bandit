@@ -66,7 +66,7 @@ const Navbar = ({ icon }) => {
 		if (location.pathname === "/") {
 			return homeLinks;
 		}
-		if (location.pathname === "/login") {
+		if (location.pathname === "/login" || "/register") {
 			return loginLinks;
 		}
 	};
