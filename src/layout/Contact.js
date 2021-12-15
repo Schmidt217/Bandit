@@ -42,7 +42,7 @@ const Contact = () => {
 			message: _message,
 		};
 
-		fetch("/.netlify/functions/send-email", {
+		fetch("../.netlify/functions/send-email", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/JSON",
@@ -72,7 +72,7 @@ const Contact = () => {
 				<hr />
 				<div className="contact-row">
 					<div className="contact-column">
-						<form ref={formRef}>
+						<form ref={formRef} onSubmit={submitEmail}>
 							<input
 								type="text"
 								className="input-search name"
@@ -117,7 +117,7 @@ const Contact = () => {
 								id="message"
 								ref={messageRef}
 							></textarea>
-							<button id="form-submit" ref={submitRef} onClick={submitEmail}>
+							<button id="form-submit" ref={submitRef}>
 								Submit
 							</button>
 						</form>
