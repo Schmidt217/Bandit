@@ -24,7 +24,7 @@ const Register = () => {
 					</div>
 					<div>
 						<label htmlFor="email">Email</label>
-						<input type="email" name="email" required />
+						<input className="login-email" type="email" name="email" required />
 					</div>
 					<div>
 						<label htmlFor="password">Password</label>

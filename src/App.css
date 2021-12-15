@@ -598,8 +598,8 @@ input {
 	float: left;
 }
 
-.login-form input[type="name"],
-input[type="email"],
+.login-form .login-email,
+input[type="name"],
 input[type="password"] {
 	display: block;
 	margin: 0;
