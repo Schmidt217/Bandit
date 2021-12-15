@@ -41,8 +41,10 @@ const Services = () => {
 				</div>
 			</section>
 
-			<section id="how-it-works" className="section">
-				<div className="how-it-works">
+			<hr />
+
+			<div id="how-it-works" className="how-it-works section-holder">
+				<section className="section">
 					<h2>How It Works</h2>
 					<img
 						src="/images/Bandit-how-it-works.png"
@@ -71,8 +73,8 @@ const Services = () => {
 							service and Bandit releases payment
 						</li>
 					</ul>
-				</div>
-			</section>
+				</section>
+			</div>
 		</div>
 	);
 };
