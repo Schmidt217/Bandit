@@ -6,7 +6,7 @@ import Services from "../layout/Services";
 import Benefits from "../layout/Benefits";
 import CoreValues from "../layout/CoreValues";
 import Contact from "../layout/Contact";
-import Footer from "../layout/Footer";
+// import Footer from "../layout/Footer";
 
 const Home = () => {
 	useEffect(() => {
@@ -41,7 +41,7 @@ const Home = () => {
 			<Benefits />
 			<CoreValues />
 			<Contact />
-			<Footer />
+			{/* <Footer /> */}
 		</>
 	);
 };
