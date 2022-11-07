@@ -14,7 +14,7 @@ const Benefits = () => {
 				<div id="benefits" className="section-holder odd-section">
 				<section className="section">
 					<h2>Benefits</h2>
-					<BenefitsTabs isSelected={isSelected} onSelect ={selectTab}/>
+					<BenefitsTabs isSelected={isSelected} onSelect={selectTab}/>
 					<BenefitsContent isSelected={isSelected}/>
 				</section>
 			</div>

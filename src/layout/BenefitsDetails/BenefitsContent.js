@@ -3,7 +3,7 @@ import React from 'react'
 const BenefitsContent = ({ isSelected }) => {
   return (
     <>
-        <div className={`benefits-content benefits-content-1 ${isSelected === "partner/integrator" ? "benefits-content-active" : ""}`}>
+        <div className={`benefits-content ${isSelected === "partner/integrator" ? "benefits-content-active" : ""}`}>
 			<img
 				className="partner-image benefit-image"
 				src="images/partner-image.webp"
@@ -22,7 +22,7 @@ const BenefitsContent = ({ isSelected }) => {
 			</ul>
 		</div>
 
-		<div className={`benefits-content benefits-content-2 ${isSelected === "technicians" ? "benefits-content-active" : ""}`}>
+		<div className={`benefits-content  ${isSelected === "technicians" ? "benefits-content-active" : ""}`}>
 			<ul className="technician-benefits benefit-list">
 				<li>Flexibility in hours</li>
 				<li>Additional income</li>
@@ -38,7 +38,7 @@ const BenefitsContent = ({ isSelected }) => {
 			/>
 		</div>
 
-		<div className={`benefits-content benefits-content-3 ${isSelected === "customer" ? "benefits-content-active" : ""}`}>
+		<div className={`benefits-content ${isSelected === "customer" ? "benefits-content-active" : ""}`}>
 			<img
 				className="customer-image benefit-image"
 				src="images/city.webp"
