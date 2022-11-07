@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+
 const Header = ({ title }) => {
 	const learnMore = () => {
 		document.querySelector("#about").scrollIntoView({ behavior: "smooth" });
