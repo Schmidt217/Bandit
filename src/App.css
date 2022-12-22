@@ -45,6 +45,10 @@ header {
 	position: relative;
 }
 
+.hidden {
+	display: none;
+}
+
 .section {
 	margin-bottom: 90px;
 }

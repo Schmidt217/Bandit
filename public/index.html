@@ -11,7 +11,6 @@
 		<meta property="og:type" content="Website" />
 		<meta name="image" property="og:image" content="https://live.staticflickr.com/65535/51828737423_b882876920_w.jpg" />
 		<meta name="description" property="og:description" content="On-Demand Solution to Security Service Calls" />
-		<meta name="author" content="Mike Schmidt" />
 		<meta name="description" content="security" />
 		<meta name="description" content="mobile connectivity" />
 		<meta name="description" content="technicians" />
@@ -37,6 +36,15 @@
 		</div>
 		<noscript>You need to enable JavaScript to run this app.</noscript>
 		<div id="root"></div>
+
+		<!-- Tell Netlify to expect this form. -->
+		<form name="contact" netlify netlify-honeypot="bot-field" class="hidden">
+			<input type="text" name="name" />
+			<input type="email" name="email" />
+			<input type="tel" name="phone" />
+			<input type="text" name="subject" />
+			<textarea name="message"></textarea>
+		  </form>
 
 		<script
 			src="https://kit.fontawesome.com/49806c5d73.js"
