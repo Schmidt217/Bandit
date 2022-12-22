@@ -8,7 +8,7 @@ const Contact = () => {
 	const [message, setMessage] = useState("");
 	const [showSuccess, setShowSuccess] = useState(false);
 	const [showError, setShowError] = useState(false);
-	const [submitBtnText, setSubmitBtnText] = useState("SUBMIT");
+	const [loading, setLoading] = useState(false);
 
 	const formSubmittingBtn = `
 	<div>
@@ -29,7 +29,7 @@ const Contact = () => {
 
 	const submitEmail = (e) => {
 		e.preventDefault();
-		setSubmitBtnText(formSubmittingBtn);
+		setLoading(true);
 
 		// create a URLParamObject
 		const params = new URLSearchParams();
@@ -51,9 +51,10 @@ const Contact = () => {
 			.then((response) => {
 				if (response.ok) {
 					setShowSuccess(true);
-					setSubmitBtnText("SUBMIT");
+					setLoading(false);
 				} else {
 					setShowError(true);
+					setLoading(false);
 					console.error(
 						"An error occurred submitting the form: ",
 						response.error
@@ -84,16 +85,6 @@ const Contact = () => {
 				<h2>Contact Us!</h2>
 				<p>For more information or if you have any questions please ask!</p>
 				<hr />
-				{showSuccess && (
-					<div>
-						Thank you for your message. We will get back to you shortly.
-					</div>
-				)}
-				{showError && (
-					<div>
-						There was an error sending your message. Please try again later.
-					</div>
-				)}
 				<div className="contact-row">
 					<div className="contact-column">
 						<form onSubmit={submitEmail}>
@@ -147,7 +138,20 @@ const Contact = () => {
 								placeholder="Message"
 								id="message"
 							></textarea>
-							<button id="form-submit">{submitBtnText}</button>
+							<button id="form-submit">
+								{loading ? "Submitting..." : "SUBMIT"}
+							</button>
+							{showSuccess && (
+								<div>
+									Thank you for your message. We will get back to you shortly.
+								</div>
+							)}
+							{showError && (
+								<div>
+									There was an error sending your message. Please try again
+									later.
+								</div>
+							)}
 						</form>
 					</div>
 					<div className="contact-column-2">
