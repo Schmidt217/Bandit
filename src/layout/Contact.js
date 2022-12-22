@@ -1,68 +1,82 @@
-import React, { useRef } from "react";
+import React, { useState, useEffect } from "react";
 
 const Contact = () => {
-	const formRef = useRef();
-	const nameRef = useRef();
-	const emailRef = useRef();
-	const phoneRef = useRef();
-	const subjectRef = useRef();
-	const messageRef = useRef();
-	const submitRef = useRef("Submit");
+	const [name, setName] = useState("");
+	const [email, setEmail] = useState("");
+	const [phone, setPhone] = useState("");
+	const [subject, setSubject] = useState("");
+	const [message, setMessage] = useState("");
+	const [showSuccess, setShowSuccess] = useState(false);
+	const [showError, setShowError] = useState(false);
+	const [submitBtnText, setSubmitBtnText] = useState("SUBMIT");
+
+	const formSubmittingBtn = `
+	<div>
+		<svg version="1.1"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+			width="40px" height="40px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+		<path fill="#fff" d="M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z">
+			<animateTransform attributeType="xml"
+			attributeName="transform"
+			type="rotate"
+			from="0 25 25"
+			to="360 25 25"
+			dur="0.6s"
+			repeatCount="indefinite"/>
+			</path>
+		</svg>
+	</div>
+`;
 
 	const submitEmail = (e) => {
 		e.preventDefault();
-		submitRef.current.innerHTML = `
-				<div>
-					<svg version="1.1"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-						width="40px" height="40px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
-					<path fill="#fff" d="M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z">
-						<animateTransform attributeType="xml"
-						attributeName="transform"
-						type="rotate"
-						from="0 25 25"
-						to="360 25 25"
-						dur="0.6s"
-						repeatCount="indefinite"/>
-						</path>
-					</svg>
-				</div>
-			`;
+		setSubmitBtnText(formSubmittingBtn);
 
-		let _name = nameRef.current.value;
-		let _email = emailRef.current.value;
-		let _phone = phoneRef.current.value;
-		let _subject = subjectRef.current.value;
-		let _message = messageRef.current.value;
+		// create a URLParamObject
+		const params = new URLSearchParams();
+		params.append("name", name);
+		params.append("email", email);
+		params.append("phone", phone);
+		params.append("subject", subject);
+		params.append("message", message);
+		params.append("form-name", "contact"); // the name of your form in Netlify
+		const urlEncodedData = params.toString();
 
-		const data = {
-			name: _name,
-			email: _email,
-			phone: _phone,
-			subject: _subject,
-			message: _message,
-		};
-
-		fetch("/.netlify/functions/send-email", {
+		fetch("/", {
 			method: "POST",
 			headers: {
-				"Content-Type": "application/JSON",
+				"Content-Type": "application/x-www-form-urlencoded", // important! we are not sending JSON, we are sending URL encoded data
 			},
-			body: JSON.stringify(data),
+			body: urlEncodedData,
 		})
-			.then((response) => response.json())
-			.then((obj) => {
-				console.log(obj);
-				alert("Message sent successfully!");
+			.then((response) => {
+				if (response.ok) {
+					setShowSuccess(true);
+					setSubmitBtnText("SUBMIT");
+				} else {
+					setShowError(true);
+					console.error(
+						"An error occurred submitting the form: ",
+						response.error
+					);
+				}
 			})
-			.then(() => {
-				submitRef.current.innerHTML = "Submit";
-				formRef.current.reset();
-			})
-			.catch((err) => {
-				console.log(err);
-				alert(err);
+			.catch((error) => {
+				console.error(error);
 			});
 	};
+
+	// let success/error message show for 6 seconds, then reset form
+	useEffect(() => {
+		setTimeout(() => {
+			setName("");
+			setEmail("");
+			setPhone("");
+			setSubject("");
+			setMessage("");
+			setShowSuccess(false);
+			setShowError(false);
+		}, 4000);
+	}, [showError, showSuccess]);
 
 	return (
 		<div id="contact" className="section-holder odd-section">
@@ -70,56 +84,70 @@ const Contact = () => {
 				<h2>Contact Us!</h2>
 				<p>For more information or if you have any questions please ask!</p>
 				<hr />
+				{showSuccess && (
+					<div>
+						Thank you for your message. We will get back to you shortly.
+					</div>
+				)}
+				{showError && (
+					<div>
+						There was an error sending your message. Please try again later.
+					</div>
+				)}
 				<div className="contact-row">
 					<div className="contact-column">
-						<form ref={formRef} onSubmit={submitEmail}>
+						<form onSubmit={submitEmail}>
 							<input
 								type="text"
+								value={name}
+								onChange={(e) => setName(e.target.value)}
 								className="input-search name"
 								name="name"
 								placeholder="Name"
-								ref={nameRef}
 								required
 							/>
 
 							<input
 								type="email"
+								value={email}
+								onChange={(e) => setEmail(e.target.value)}
 								className="input-search email"
 								name="email"
 								placeholder="Email"
-								ref={emailRef}
 								required
 							/>
 
 							<input
 								type="text"
+								value={subject}
+								onChange={(e) => setSubject(e.target.value)}
 								className="input-search subject"
+								name="subject"
 								placeholder="Subject"
-								ref={subjectRef}
 								required
 							/>
 
 							<input
 								type="tel"
+								value={phone}
+								onChange={(e) => setPhone(e.target.value)}
 								className="input-search phone"
 								name="phone"
 								placeholder="Phone Number"
-								ref={phoneRef}
 								required
 							/>
 
 							<textarea
 								name="message"
+								value={message}
+								onChange={(e) => setMessage(e.target.value)}
 								className="input-search"
 								cols="30"
 								rows="10"
 								placeholder="Message"
 								id="message"
-								ref={messageRef}
 							></textarea>
-							<button id="form-submit" ref={submitRef}>
-								Submit
-							</button>
+							<button id="form-submit">{submitBtnText}</button>
 						</form>
 					</div>
 					<div className="contact-column-2">
