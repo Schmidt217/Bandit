@@ -1,3 +1,5 @@
+This website was created for startup company, Bandit SVC. Anna Schmidt and Michael Schmidt collaborated to design, build, and maintain this site. This website was built with React.js, Javascript, CSS, and HTML. The email/contact functionality was created with Netlify forms.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
